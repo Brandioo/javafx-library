@@ -19,32 +19,32 @@ public class ClientSignUpView {
         root1.setVgap(10);
         root1.setPadding(new Insets(10, 10, 10, 10));
 
-        Label firstNameLabel = new Label("First Name");
+        Label firstNameLabel = new Label("First Name: ");
         TextField firstNameField = new TextField();
         root1.add(firstNameLabel, 1, 2);
         root1.add(firstNameField, 2, 2);
 
-        Label lastNameLabel = new Label("Last Name");
+        Label lastNameLabel = new Label("Last Name: ");
         TextField lastNameField = new TextField();
         root1.add(lastNameLabel, 1, 3);
         root1.add(lastNameField, 2, 3);
 
-        Label emailLabel = new Label("Email:");
+        Label emailLabel = new Label("Email: ");
         TextField emailField = new TextField();
         root1.add(emailLabel, 1, 4);
         root1.add(emailField, 2, 4);
 
-        Label phoneNumberLabel = new Label("PhoneNumber:");
+        Label phoneNumberLabel = new Label("PhoneNumber: ");
         TextField phoneNumberField = new TextField();
         root1.add(phoneNumberLabel, 1, 5);
         root1.add(phoneNumberField, 2, 5);
 
-        Label addressLabel = new Label("Address");
+        Label addressLabel = new Label("Address: ");
         TextField addressField = new TextField();
         root1.add(addressLabel, 1, 6);
         root1.add(addressField, 2, 6);
 
-        Label createdOnLabel = new Label("Created On");
+        Label createdOnLabel = new Label("Created On: ");
         TextField createdOnField = new TextField();
         root1.add(createdOnLabel, 1, 7);
         root1.add(createdOnField, 2, 7);

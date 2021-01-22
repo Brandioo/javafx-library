@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.time.LocalDateTime;
 
 public class BookStockRegistrationView {
-    public Scene execute(Stage stage){
+    public Scene execute(Stage stage) {
         GridPane root1 = new GridPane();
 
         root1.setHgap(10);
@@ -40,20 +40,47 @@ public class BookStockRegistrationView {
         TextArea descriptionArea = new TextArea();
         root1.add(descriptionArea, 2, 5);
 
-        Label quantityLabel = new Label("Quantity: ");
-        IntegerField quantityField = new IntegerField();
-        root1.add(quantityLabel, 1, 6);
-        root1.add(quantityField, 2, 6);
+        // Creates an integer spinner with 1 as min, 10 as max and 2 as initial value
+        Spinner<Integer> spinner1 = new Spinner<>(1, 1000, 1);
 
-        Label priceLabel = new Label("Price: ");
-        IntegerField priceField = new IntegerField();
-        root1.add(priceLabel, 1, 6);
-        root1.add(priceField, 2, 6);
+        Spinner<Integer> spinner2 = new Spinner<>(1, 1000, 1);
 
-        Label createdOnLabel = new Label("Created On");
+
+// Creates an integer spinner with 0 as min, 100 as max and 10 as initial
+// value and 10 as amount to increment or decrement by, per step
+       // Spinner<Integer> spinner2 = new Spinner<>(0, 100, 10, 10);
+
+//        Label quantityLabel = new Label("Quantity: ");
+//        IntegerField quantityField = new IntegerField();
+//        root1.add(quantityLabel, 1, 6);
+//        root1.add(quantityField, 2, 6);
+//
+//        Label priceLabel = new Label("Price: ");
+//        IntegerField priceField = new IntegerField();
+//        root1.add(priceLabel, 1, 7);
+//        root1.add(priceField, 2, 7);
+
+//
+//        Label quantityLabel=new Label("Quantity: ");
+//        root1.add(spinner1,1,6);
+
+
+        root1.add(new Label("Quantity: "),1,6);
+        root1.add(spinner1,2,6);
+//        TextField quantityField = new TextField();
+//        root1.add(quantityField, 2, 8);
+
+
+        root1.add(new Label("Price: "),1,7);
+        root1.add(spinner2,2,7);
+//        TextField priceField = new TextField();
+//        root1.add(priceField, 2, 8);
+
+
+        Label createdOnLabel = new Label("Created On: ");
         TextField createdOnField = new TextField();
-        root1.add(createdOnLabel, 1, 7);
-        root1.add(createdOnField, 2, 7);
+        root1.add(createdOnLabel, 1, 8);
+        root1.add(createdOnField, 2, 8);
 
         Button createClientButton = new Button("-Book Creation-");
         root1.add(createClientButton, 2, 18);
@@ -66,8 +93,8 @@ public class BookStockRegistrationView {
                 String genere = genereField.getText();
                 String isbn = isbnField.getText();
                 String description = descriptionArea.getText();
-                Integer quantity = quantityField.getValue();
-                Integer price = priceField.getValue();
+                Integer quantity = spinner1.getValue();
+                Integer price = spinner2.getValue();
                 LocalDateTime createdOn = LocalDateTime.now();
                 //String description = descriptionArea.getText();
                 // boolean isRememberMe = remember.isSelected();
@@ -95,7 +122,7 @@ public class BookStockRegistrationView {
 
         Scene scene = new Scene(root1, 700, 750);
         stage.setScene(scene);
-        stage.setTitle("Sign Up Books");
+        stage.setTitle("Register Books");
         stage.show();
 
         return scene;

@@ -1,7 +1,5 @@
 package LibraryManagementFunctionFactory;
 
-import Login.ClientSignUpView;
-import Login.LoginView;
 import model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -246,6 +244,19 @@ public class LibraryManagementOptionsFactory {
         session.createQuery("from Book").getResultList().forEach(System.out::println);
         return null;
     }
+
+
+    public List<Book> findAllBookList() {
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
+        System.out.println("Print All From Book: ");
+        Query query = session.createQuery("from Book");
+
+        List<Book> books = query.getResultList();
+        session.close();
+        return books;
+
+    }
+
 
     public Employee logIn(String user, String password) {
 

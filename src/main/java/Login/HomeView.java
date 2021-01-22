@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.Employee;
+import vendingMachine.models.VendingMachine;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -115,9 +116,27 @@ public class HomeView {
 
         });
 
+        Button buyBook = new Button("-Buy Book-");
+        root1.add(buyBook, 7, 6);
+//        root.getChildren().add(getAllUser);
+
+        buyBook.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent arg0) {
+                VendingMachine vendingMachine=new VendingMachine();
+                Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                successAlert.setHeaderText("Buying Book");
+                vendingMachine.start();
+                successAlert.showAndWait();
+                System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
+            }
+
+        });
+
 
         Button getUser = new Button("-Get User Info-");
-        root1.add(getUser, 7, 6);
+        root1.add(getUser, 7, 7);
 
         getUser.setOnAction(e -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -128,7 +147,7 @@ public class HomeView {
         });
 
         Button getVerificationStatus = new Button("-Verification Status-");
-        root1.add(getVerificationStatus, 7, 7);
+        root1.add(getVerificationStatus, 7, 8);
 
         getVerificationStatus.setOnAction(e -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -139,21 +158,21 @@ public class HomeView {
         });
 
         Button createClientButton = new Button("-Create Client Button-");
-        root1.add(createClientButton, 7, 8);
+        root1.add(createClientButton, 7, 9);
 
         createClientButton.setOnAction(e->{
             stage.setScene(new ClientSignUpView().execute(stage));
         });
 
         Button createBookButton = new Button("-Create Book Button-");
-        root1.add(createBookButton, 7, 9);
+        root1.add(createBookButton, 7, 10);
 
         createBookButton.setOnAction(e->{
             stage.setScene(new BookStockRegistrationView().execute(stage));
         });
 
         Button logOutButton = new Button("Log-Out");
-        root1.add(logOutButton, 7, 11);
+        root1.add(logOutButton, 7, 12);
 
         logOutButton.setOnAction(e->{
             stage.setScene(new LoginView().execute(stage));
