@@ -3,6 +3,7 @@ package model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,5 +28,18 @@ public class Client {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Cartel> cartels = new HashSet<>();
+
+    public Client(String firstName, String lastName, String email, String phoneNumber, String address, LocalDateTime createdOn) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.createdOn = createdOn;
+    }
+
+    public Client() {
+
+    }
 }
 

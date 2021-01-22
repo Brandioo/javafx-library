@@ -1,11 +1,16 @@
 package LibraryManagementFunctionFactory;
 
-import model.Employee;
+import Login.ClientSignUpView;
+import Login.LoginView;
+import model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import util.HibernateUtils;
 
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,6 +147,47 @@ public class LibraryManagementOptionsFactory {
     }
 
 
+
+    public void createEmployee(final Employee employee) {
+        Transaction transaction = session.beginTransaction();
+
+        session.save(employee);
+
+        transaction.commit();
+    }
+
+    public void createClient(final Client client) {
+        Transaction transaction = session.beginTransaction();
+
+        session.save(client);
+
+        transaction.commit();
+    }
+
+    public void createBook(final Book book) {
+        Transaction transaction = session.beginTransaction();
+
+        session.save(book);
+
+        transaction.commit();
+    }
+
+    public void createCartel(final Cartel cartel) {
+        Transaction transaction = session.beginTransaction();
+
+        session.save(cartel);
+
+        transaction.commit();
+    }
+
+    public void createCartelRecord(final CartelRecord cartelRecord) {
+        Transaction transaction = session.beginTransaction();
+
+        session.save(cartelRecord);
+
+        transaction.commit();
+    }
+
     public void findAdministrator() {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From Administrator from Employee: ");
@@ -160,34 +206,45 @@ public class LibraryManagementOptionsFactory {
         return session.find(Employee.class, Id);
     }
 
-    public void findAllEmployees() {
+    public String findAllEmployees() {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From Employee: ");
-        session.createQuery("from Employee").getResultList().forEach(System.out::println);
+        session.createQuery("from Employee ").getResultList().forEach(System.out::println);
+        return null;
     }
 
-    public void findAllCartels() {
+    public void findAllEmployeesNames() {
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
+        System.out.println("Print All Names From Employee: ");
+        session.createQuery("select e.firstName from Employee e").getResultList().forEach(System.out::println);
+    }
+
+    public String findAllCartels() {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From Cartels: ");
         session.createQuery("from Cartel").getResultList().forEach(System.out::println);
+        return null;
     }
 
-    public void findAllCartelRecord() {
+    public String findAllCartelRecord() {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From CartelRecord: ");
         session.createQuery("from CartelRecord").getResultList().forEach(System.out::println);
+        return null;
     }
 
-    public void findAllClient() {
+    public String findAllClient() {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From Client: ");
         session.createQuery("from Client").getResultList().forEach(System.out::println);
+        return null;
     }
 
-    public void findAllBook() {
+    public String findAllBook() {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From Book: ");
         session.createQuery("from Book").getResultList().forEach(System.out::println);
+        return null;
     }
 
     public Employee logIn(String user, String password) {
@@ -204,6 +261,50 @@ public class LibraryManagementOptionsFactory {
         }
         session.close();
         return employee;
+    }
+
+
+    public boolean signUp( String firstName, String lastName, LocalDate dateOfBirth, String email,
+                          String phoneNumber, String role, String user, String password, String verifiedPassword,
+                          LocalDateTime createdOn) {
+        if (password.equals(verifiedPassword)) {
+            // the data are okay
+            // create the user
+            Employee employee = new Employee( firstName, lastName, dateOfBirth, email, phoneNumber, role
+                    , user, password, createdOn);
+            //this.employees.add(employee);
+            createEmployee(employee);
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean createClientButton( String firstName, String lastName, String email,
+                           String phoneNumber, String address, LocalDateTime createdOn) {
+
+            // the data are okay
+            // create the user
+            Client client = new Client(firstName, lastName, email, phoneNumber, address, createdOn);
+            //this.employees.add(employee);
+            createClient(client);
+            return true;
+
+    }
+
+    public boolean createBookButton(String bookName, String genere, String isbn,
+                                       String description, Integer quantity, Integer price, LocalDateTime createdOn) {
+
+        // the data are okay
+        // create the user
+        Book book = new Book(bookName, genere, isbn, description, quantity, price, createdOn);
+        //this.employees.add(employee);
+        createBook(book);
+        return true;
+
+    }
+    public boolean logOutButton() {
+        return false;
     }
 }
 

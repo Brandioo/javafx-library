@@ -1,19 +1,29 @@
 package AbstractFactory;
 
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
+import Login.LoginView;
+import javafx.stage.Stage;
 import model.Employee;
 
 import java.util.Optional;
 import java.util.Scanner;
 
 public class OperatorFactory implements StatusCategory {
+    Stage primaryStage = null;
     @Override
-    public Optional<Employee> getAction() {
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setScene(new LoginView().execute(primaryStage));
+        primaryStage.show();
+    }
+
+    @Override
+    public Optional<Employee> getAction() throws Exception {
 
         LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
-        Employee employee = new Employee();
+      //  Employee employee = new Employee(employeeId, firstName, lastName, email, phoneNumber, role, password, user, createdBy, createdOn, modifiedBy, isRemeberMe);
         System.out.println("__________________________________________________");
-        System.out.println("Welcome " + employee.getUser() + " you are Operator");
+      //  System.out.println("Welcome " + employee.getUser() + " you are Operator");
+        start(primaryStage);
         boolean t = true;
         while (t) {
             System.out.println("Please choose one action: ");

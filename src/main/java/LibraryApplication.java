@@ -1,7 +1,14 @@
+//Brand Citozi SDA-Academy
+//My Group: Xhoi Hysa, Stivi Koko, Hysnije Agalliu
+import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import Login.LoginView;
+import Page.ClassCall;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import org.hibernate.Session;
 import util.HibernateUtils;
+
+import java.time.LocalDateTime;
 
 public class LibraryApplication extends Application {
 
@@ -115,6 +122,9 @@ public class LibraryApplication extends Application {
 //
 //        primaryStage.setScene(new LoginView().execute(primaryStage));
 //       // primaryStage.setTitle("Views.User Signing Up");
+
+       // ClassCall.rendering();
+
         HibernateUtils.getSessionFactory().openSession();
         primaryStage.setScene(new LoginView().execute(primaryStage));
         primaryStage.show();
@@ -123,7 +133,16 @@ public class LibraryApplication extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] args) throws Exception {
+        ClassCall.rendering();
+        Session session = HibernateUtils.getSessionFactory().openSession();
+//        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
+//        System.out.println("Print All From Employee: ");
+
+//        LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
+//        libraryManagementOptionsFactory.findAllClient();
+         launch(args);
+
+
     }
 }

@@ -1,11 +1,14 @@
 package AbstractFactory;
 
+import javafx.stage.Stage;
 import model.Book;
 import model.Employee;
 
 import java.util.Optional;
 
 public interface StatusCategory {
-    Optional<Employee> getAction();
+    void start(Stage primaryStage) throws Exception;
+
+    Optional<Employee> getAction() throws Exception;
 
 }

@@ -20,7 +20,7 @@ public class LoginView {
         root.setAlignment(Pos.CENTER);
 
 
-        Label userLabel = new Label("Email:");
+        Label userLabel = new Label("Username:");
         TextField userField = new TextField();
         root.add(userLabel, 1, 3);
         root.add(userField, 2, 3);
@@ -62,9 +62,12 @@ public class LoginView {
             }
         });
 
-//        signUp.setOnAction(e->{
-//            stage.setScene(new SignUpView().execute(stage));
-//        });
+        Button signUp = new Button("Sign up");
+        root.add(signUp, 2, 11);
+
+        signUp.setOnAction(e->{
+            stage.setScene(new SignUpView().execute(stage));
+        });
 
         Scene sc = new Scene(root, 400, 350);
         stage.setTitle("Log in");

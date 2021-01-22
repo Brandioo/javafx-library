@@ -31,4 +31,17 @@ public class Book {
     @EqualsAndHashCode.Exclude
     private Set<CartelRecord> cartelRecords = new HashSet<>();
 
+    public Book(String bookName, String genere, String isbn, String description, Integer quantity, Integer price, LocalDateTime createdOn) {
+        this.bookName = bookName;
+        this.genere = genere;
+        this.isbn = isbn;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+        this.createdOn = createdOn;
+    }
+
+    public Book() {
+
+    }
 }

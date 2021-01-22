@@ -1,5 +1,5 @@
 package Page;
 
 public interface Page {
-    void render();
+    void render() throws Exception;
 }

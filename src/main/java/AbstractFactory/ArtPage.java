@@ -1,16 +1,26 @@
 package AbstractFactory;
 
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
+import Login.LoginView;
 import Page.Page;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import model.Employee;
 
 import java.util.Scanner;
 
-public class ArtPage implements Page {
+public class ArtPage extends Application implements Page {
     private Object AdmistratorFactory;
 
     @Override
-    public void render() {
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setScene(new LoginView().execute(primaryStage));
+        primaryStage.show();
+    }
+
+    @Override
+    public void render() throws Exception {
+
         LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
         libraryManagementOptionsFactory.findAdministrator();
         libraryManagementOptionsFactory.findOperator();
@@ -25,14 +35,12 @@ public class ArtPage implements Page {
         if ("Administrator".equalsIgnoreCase(categoryWork)) {
             System.out.println("******************************");
             System.out.println("Welcome To Our Company!");
-            while (true) {
-                System.out.println("-Write your Username Of Your Signed Up Account:  ");
-                String username1 = sc.nextLine();
-                System.out.println("----------------------------------");
-                System.out.println("-Write your Password Of Your Signed Up Account: ");
-                //Password inputted
-                String password = sc.nextLine();
-                new AdministratorFactory();
+//                System.out.println("-Write your Username Of Your Signed Up Account:  ");
+//                String username1 = sc.nextLine();
+//                System.out.println("----------------------------------");
+//                System.out.println("-Write your Password Of Your Signed Up Account: ");
+            //Password inputted
+
 //                Employee e = libraryManagementOptionsFactory.checkLogin(username1, password);
 //
 //                if (e instanceof PasswordChecker) {
@@ -47,19 +55,16 @@ public class ArtPage implements Page {
 //                }
 
 
-            }
+            new AdministratorFactory();
+
+
         } else if ("Operator".equalsIgnoreCase(categoryWork)) {
             System.out.println("******************************");
             System.out.println("Welcome To Our Company!");
-            while (true) {
-                System.out.println("-Write your Username Of Your Signed Up Account:  ");
-                String username1 = sc.nextLine();
-                System.out.println("----------------------------------");
-                System.out.println("-Write your Password Of Your Signed Up Account: ");
-                //Password inputted
-                String password = sc.nextLine();
+           // while (true) {
 
-             //   Employee e = libraryManagementOptionsFactory.checkLogin(username1, password);
+
+                //   Employee e = libraryManagementOptionsFactory.checkLogin(username1, password);
 
 //                if (e instanceof PasswordChecker) {
 //                    OperatorFactory operatorFactory = new OperatorFactory();
@@ -73,7 +78,7 @@ public class ArtPage implements Page {
 //                }
 
                 new OperatorFactory();
-            }
+
         } else System.out.println("There is no class related to this name->" + categoryWork);
     }
 }

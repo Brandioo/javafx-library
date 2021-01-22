@@ -3,7 +3,6 @@ package model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -12,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name = "employees")
 @Data
+@NoArgsConstructor
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,28 +33,17 @@ public class Employee {
     @EqualsAndHashCode.Exclude
     private Set<Cartel> cartels = new HashSet<>();
 
-    public Employee(String user, String password) {
+    public Employee(String firstName, String lastName, LocalDate dateOfBirth, String email, String phoneNumber, String role, String user, String password, LocalDateTime createdOn) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
         this.user = user;
         this.password = password;
+        this.createdOn = createdOn;
     }
 
-    public Employee() {
 
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

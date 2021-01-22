@@ -1,10 +1,12 @@
 package Page;
 
+import AbstractFactory.ArtPage;
+
 import java.util.Optional;
 import java.util.Scanner;
 
 public class ClassCall {
-    public static void rendering() {
+    public static void rendering() throws Exception {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hello, Input The Class You Want To Call:(Library-'Art')");
         String classCalling = sc.nextLine();
