@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import model.Employee;
 
 import java.time.LocalDateTime;
 
@@ -74,10 +75,11 @@ public class ClientSignUpView {
                     errorAlert.setContentText("The password and verify password don't match");
                     errorAlert.showAndWait();
                 } else {
+                    Employee currentUser=new Employee();
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("The user was registered successfully");
                     successAlert.showAndWait();
-                    stage.setScene(new LoginView().execute(stage));
+                    stage.setScene(new HomeView(currentUser).execute(stage));
                     successAlert.close();
                 }
 

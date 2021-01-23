@@ -204,6 +204,18 @@ public class LibraryManagementOptionsFactory {
         return session.find(Employee.class, Id);
     }
 
+    public Client findClientByID(int Id) {
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
+        System.out.println("Print All From Employee by id: ");
+        return session.find(Client.class, Id);
+    }
+
+    public Book findBookByID(int Id) {
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
+        System.out.println("Print All From Employee by id: ");
+        return session.find(Book.class, Id);
+    }
+
     public String findAllEmployees() {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From Employee: ");
@@ -257,6 +269,16 @@ public class LibraryManagementOptionsFactory {
 
     }
 
+    public Employee findEmployeeID() {
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
+        System.out.println("Print All From Book: ");
+        Query query = session.createQuery("select e.employeesId from Employee e");
+        Employee employee= (Employee) query.getResultList();
+        session.close();
+        return employee;
+
+    }
+
 
     public Employee logIn(String user, String password) {
 
@@ -297,7 +319,7 @@ public class LibraryManagementOptionsFactory {
             // the data are okay
             // create the user
             Client client = new Client(firstName, lastName, email, phoneNumber, address, createdOn);
-            //this.employees.add(employee);
+            //this.client.add(client);
             createClient(client);
             return true;
 
@@ -309,11 +331,23 @@ public class LibraryManagementOptionsFactory {
         // the data are okay
         // create the user
         Book book = new Book(bookName, genere, isbn, description, quantity, price, createdOn);
-        //this.employees.add(employee);
+        //this.book.add(book);
         createBook(book);
         return true;
 
     }
+
+//    public boolean createCartelButton(LocalDateTime createdOn, String modifiedBy, Client clientId, Employee employeeId) {
+//
+//        // the data are okay
+//        // create the user
+//        Cartel cartel = new Cartel(createdOn, modifiedBy, clientId, employeeId);
+//        //this.cartel.add(cartel);
+//        createCartel(cartel);
+//        return true;
+//
+//    }
+
     public boolean logOutButton() {
         return false;
     }

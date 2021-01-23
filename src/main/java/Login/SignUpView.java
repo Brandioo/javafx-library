@@ -115,6 +115,13 @@ public class SignUpView {
 
         });
 
+        Button logOutButton = new Button("Log-In Page");
+        root.add(logOutButton, 2, 18);
+
+        logOutButton.setOnAction(e->{
+            stage.setScene(new LoginView().execute(stage));
+        });
+
         Scene scene = new Scene(root, 700, 750);
         stage.setScene(scene);
         stage.setTitle("Sign up users!");

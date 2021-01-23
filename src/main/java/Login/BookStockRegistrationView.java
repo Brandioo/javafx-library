@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import model.Employee;
 
 import java.time.LocalDateTime;
 
@@ -108,10 +109,11 @@ public class BookStockRegistrationView {
                     errorAlert.setContentText("The password and verify password don't match");
                     errorAlert.showAndWait();
                 } else {
+                    Employee currentEmployee=new Employee();
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("The user was registered successfully");
                     successAlert.showAndWait();
-                    stage.setScene(new LoginView().execute(stage));
+                    stage.setScene(new HomeView(currentEmployee).execute(stage));
                     successAlert.close();
                 }
 

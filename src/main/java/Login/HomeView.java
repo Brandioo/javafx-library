@@ -171,8 +171,15 @@ public class HomeView {
             stage.setScene(new BookStockRegistrationView().execute(stage));
         });
 
+//        Button createCartelButton = new Button("-Create Cartel Button-");
+//        root1.add(createCartelButton, 7, 12);
+//
+//        createCartelButton.setOnAction(e->{
+//            stage.setScene(new CartelView().execute(stage));
+//        });
+
         Button logOutButton = new Button("Log-Out");
-        root1.add(logOutButton, 7, 12);
+        root1.add(logOutButton, 7, 14);
 
         logOutButton.setOnAction(e->{
             stage.setScene(new LoginView().execute(stage));

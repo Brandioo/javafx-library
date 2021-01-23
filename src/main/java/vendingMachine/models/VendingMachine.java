@@ -3,7 +3,10 @@ package vendingMachine.models;
 
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import model.Book;
+import model.Cartel;
+import model.CartelRecord;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -46,10 +49,18 @@ public class VendingMachine {
                 balance += book.getPrice();
 
                 if (coins == book.getPrice()) {
+                    inputOfCartel();
+
+                    inputOfCartelRecord(book);
+
                     System.out.println("--------------------------------------------------");
                     System.out.println("Here is Your Product " + book.getBookName() + ". Enjoy!");
                     book.setQuantity(book.getQuantity() - 1);
                 } else if (coins > book.getPrice()) {
+                    inputOfCartel();
+
+                    inputOfCartelRecord(book);
+
                     System.out.println("--------------------------------------------------");
                     book.setQuantity(book.getQuantity() - 1);
                     double totalDiff = coins - book.getPrice();
@@ -80,10 +91,20 @@ public class VendingMachine {
                         int leftOverAfterPilaf = book.getPrice() - coins;
                         double totalLeftOverAfterPilaf = Math.round(leftOverAfterPilaf * 1000.0) / 1000.0;
                         if (book.getPrice() < coins) {
+
+                            inputOfCartel();
+
+                            inputOfCartelRecord(book);
+
                             System.out.println("LeftOver given To You is- " + totalLeftOverAfterPilaf);
                             System.out.println("Here is Your Product " + book.getBookName() + ". Enjoy!");
 
                         } else if (book.getPrice() == coins) {
+
+                            inputOfCartel();
+
+                            inputOfCartelRecord(book);
+
                             System.out.println("LeftOver given To You is- " + totalLeftOverAfterPilaf);
                             System.out.println("Here is Your Product " + book.getBookName() + ". Enjoy!");
                         }
@@ -93,6 +114,59 @@ public class VendingMachine {
         }
 
 
+        private Cartel inputOfCartel()
+        {
+            LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
+            Cartel cartel=new Cartel();
+            System.out.println("Input the Client ID: ");
+            int clientId;
+            clientId=sc.nextInt();
+            System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
+            cartel.setClient(libraryManagementOptionsFactory.findClientByID(clientId));
+            System.out.println("Input the Employee ID: ");
+            int employeeID;
+            employeeID=sc.nextInt();
+            cartel.setEmployee(libraryManagementOptionsFactory.findAllEmployeesByID(employeeID));
+            System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
+            cartel.setCreatedOn(LocalDateTime.now());
+            System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
+            libraryManagementOptionsFactory.createCartel(cartel);
+            return cartel;
+
+        }
+
+    private CartelRecord inputOfCartelRecord(Book book)
+    {
+        LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
+        CartelRecord cartelRecord=new CartelRecord();
+        cartelRecord.setDataStarted(LocalDateTime.now());
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
+        System.out.println("Input EndDate-Year: ");
+        int year=sc.nextInt();
+        System.out.println("--------BackEnd--------");
+        System.out.println("Input EndDate-Month: ");
+        int month=sc.nextInt();
+        System.out.println("--------BackEnd--------");
+        System.out.println("Input EndDate-Day: ");
+        int day=sc.nextInt();
+        System.out.println("--------BackEnd--------");
+        System.out.println("Input EndDate-Hour: ");
+        int hour=sc.nextInt();
+        System.out.println("--------BackEnd--------");
+        System.out.println("Input EndDate-Minute: ");
+        int minute=sc.nextInt();
+        System.out.println("--------BackEnd--------");
+        cartelRecord.setEndData(LocalDateTime.of(year,month,day,hour,minute));
+        cartelRecord.setCartel(inputOfCartel());
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
+        cartelRecord.setBook(book);
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
+        cartelRecord.setCreatedOn(LocalDateTime.now());
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
+        libraryManagementOptionsFactory.createCartelRecord(cartelRecord);
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
+        return cartelRecord;
+    }
 
     private Optional<Book> findBook() {
         System.out.println("--------------------------------------------------");

@@ -34,4 +34,15 @@ public class Cartel {
     @EqualsAndHashCode.Exclude
     @JoinColumn(name = "employeesId")
     private Employee employee;
+
+    public Cartel(LocalDateTime createdOn, String modifiedBy, Client client, Employee employee) {
+        this.createdOn = createdOn;
+        this.modifiedBy = modifiedBy;
+        this.client = client;
+        this.employee = employee;
+    }
+
+    public Cartel() {
+
+    }
 }

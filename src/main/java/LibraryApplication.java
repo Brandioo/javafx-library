@@ -139,9 +139,11 @@ public class LibraryApplication extends Application {
 //        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
 //        System.out.println("Print All From Employee: ");
 
-//        LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
-//        libraryManagementOptionsFactory.findAllClient();
-         launch(args);
+//       LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
+//       libraryManagementOptionsFactory.findAllEmployees();
+        launch(args);
+
+
 
 
     }
