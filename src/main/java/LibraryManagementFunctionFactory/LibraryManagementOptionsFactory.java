@@ -296,6 +296,36 @@ public class LibraryManagementOptionsFactory {
         return employee;
     }
 
+    public Book findBooksByName(String bookName) {
+
+        Query query  = session.createQuery("select b from Book b where b.bookName=:bookName");
+        query.setParameter("bookName", bookName);
+        List<Book> books = query.getResultList();
+
+        Book book = null;
+
+        if (!books.isEmpty()) {
+            return books.get(0);
+        }
+        session.close();
+        return book;
+    }
+
+    public Client findClientsByName(String firstName) {
+
+        Query query  = session.createQuery("select c from Client c where c.firstName=:firstName");
+        query.setParameter("firstName", firstName);
+        List<Client> clients = query.getResultList();
+
+        Client client = null;
+
+        if (!clients.isEmpty()) {
+            return clients.get(0);
+        }
+        session.close();
+        return client;
+    }
+
 
     public boolean signUp( String firstName, String lastName, LocalDate dateOfBirth, String email,
                           String phoneNumber, String role, String user, String password, String verifiedPassword,

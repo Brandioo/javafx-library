@@ -1,11 +1,10 @@
 package AbstractFactory;
 
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
-import Login.LoginView;
+import views.LoginView;
 import Page.Page;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Employee;
 
 import java.util.Scanner;
 
@@ -14,7 +13,7 @@ public class ArtPage extends Application implements Page {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new LoginView().execute(primaryStage));
+        primaryStage.setScene(new LoginView().showView(primaryStage));
         primaryStage.show();
     }
 
@@ -61,21 +60,9 @@ public class ArtPage extends Application implements Page {
         } else if ("Operator".equalsIgnoreCase(categoryWork)) {
             System.out.println("******************************");
             System.out.println("Welcome To Our Company!");
-           // while (true) {
 
 
-                //   Employee e = libraryManagementOptionsFactory.checkLogin(username1, password);
 
-//                if (e instanceof PasswordChecker) {
-//                    OperatorFactory operatorFactory = new OperatorFactory();
-//                    operatorFactory.getAction();
-//                } else {
-//                    System.out.println(" -_-_-_-_-_-_-_-_-_-_-_-_-");
-//                    System.out.println("Your info is not correct! ");
-//                    System.out.println("Please try again");
-//                    System.out.println(" -_-_-_-_-_-_-_-_-_-_-_-_-");
-//                    break;
-//                }
 
                 new OperatorFactory();
 

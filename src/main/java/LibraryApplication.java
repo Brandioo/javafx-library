@@ -1,14 +1,11 @@
 //Brand Citozi SDA-Academy
 //My Group: Xhoi Hysa, Stivi Koko, Hysnije Agalliu
-import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
-import Login.LoginView;
 import Page.ClassCall;
+import org.hibernate.Session;
+import views.LoginView;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.hibernate.Session;
 import util.HibernateUtils;
-
-import java.time.LocalDateTime;
 
 public class LibraryApplication extends Application {
 
@@ -126,7 +123,8 @@ public class LibraryApplication extends Application {
        // ClassCall.rendering();
 
         HibernateUtils.getSessionFactory().openSession();
-        primaryStage.setScene(new LoginView().execute(primaryStage));
+        LoginView loginView=new LoginView();
+        primaryStage.setScene(loginView.showView(primaryStage));
         primaryStage.show();
 
 

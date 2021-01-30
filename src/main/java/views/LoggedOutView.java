@@ -1,4 +1,4 @@
-package Login;
+package views;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,7 +17,7 @@ public class LoggedOutView {
             @Override
             public void handle(ActionEvent event) {
                 LoginView loginView = new LoginView();
-                loginView.execute(stage);
+                loginView.showView(stage);
             }
         });
 

@@ -1,19 +1,17 @@
-package Login;
+package views;
 
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Employee;
 import vendingMachine.models.VendingMachine;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class HomeView {
     private Employee currentUser;
@@ -24,12 +22,20 @@ public class HomeView {
 
     public Scene execute(Stage stage) {
         //StackPane root = new StackPane();
+
+        BorderPane mainPane = new BorderPane();
+        MenuBar menuBar = new MenuBar();
+        Menu userMenu = new Menu("User Control");
+        userMenu.setStyle("-fx-font-weight: bold;");
+        Menu createMenu = new Menu("Registration");
+        createMenu.setStyle("-fx-font-weight: bold;");
+        Menu findBookOrClient = new Menu("Find-Options");
+        findBookOrClient.setStyle("-fx-font-weight: bold;");
+
         GridPane root1 = new GridPane();
+        root1.setAlignment(Pos.CENTER);
 
-
-        Button getAllCartelRecord = new Button("-Get All Cartel-Record Info-");
-        root1.add(getAllCartelRecord, 7, 1);
-
+        MenuItem getAllCartelRecord = new MenuItem("-Get All Cartel-Record Info-");
         getAllCartelRecord.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -44,9 +50,7 @@ public class HomeView {
 
         });
 
-        Button getAllUser = new Button("-Get All User Info-");
-        root1.add(getAllUser, 7, 2);
-
+        MenuItem getAllUser = new MenuItem("-Get All User Info-");
         getAllUser.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -62,9 +66,7 @@ public class HomeView {
 
         });
 
-        Button getAllClients = new Button("-Get All Client Info-");
-        root1.add(getAllClients, 7, 3);
-
+        MenuItem getAllClients = new MenuItem("-Get All Client Info-");
         getAllClients.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -80,9 +82,7 @@ public class HomeView {
 
         });
 
-        Button getAllCartels = new Button("-Get All Cartel Info-");
-        root1.add(getAllCartels, 7, 4);
-
+        MenuItem getAllCartels = new MenuItem("-Get All Cartel Info-");
         getAllCartels.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -98,8 +98,7 @@ public class HomeView {
         });
 
 
-        Button getAllBooks = new Button("-Get All Books Info-");
-        root1.add(getAllBooks, 7, 5);
+        MenuItem getAllBooks = new MenuItem("-Get All Books Info-");
 //        root.getChildren().add(getAllUser);
 
         getAllBooks.setOnAction(new EventHandler<ActionEvent>() {
@@ -116,8 +115,33 @@ public class HomeView {
 
         });
 
+
+
+        MenuItem getUser = new MenuItem("-Get Current User Info-");
+        getUser.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(this.currentUser.toString());
+            alert.setHeaderText("The user Information");
+            alert.showAndWait();
+
+        });
+
+        userMenu.getItems().addAll(getUser, getAllUser, getAllClients, getAllBooks, getAllCartels, getAllCartelRecord);
+
+        Label logOutLabel=new Label("Log Out");
+        Menu logout=new Menu("", logOutLabel);
+        logOutLabel.setOnMouseClicked(e->{
+            LoginView lv= new LoginView();
+            stage.setScene(lv.showView(stage));
+        });
+
+        menuBar.getMenus().add(userMenu);
+        mainPane.setTop(menuBar);
+
+
         Button buyBook = new Button("-Buy Book-");
-        root1.add(buyBook, 7, 6);
+        buyBook.setStyle("-fx-font-weight: bold;");
+        root1.add(buyBook, 2, 3);
 //        root.getChildren().add(getAllUser);
 
         buyBook.setOnAction(new EventHandler<ActionEvent>() {
@@ -134,21 +158,30 @@ public class HomeView {
 
         });
 
-
-        Button getUser = new Button("-Get User Info-");
-        root1.add(getUser, 7, 7);
-
-        getUser.setOnAction(e -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(this.currentUser.toString());
-            alert.setHeaderText("The user Information");
-            alert.showAndWait();
-
+        MenuItem findBook = new MenuItem("-Find Book-");
+        findBook.setStyle("-fx-font-weight: bold;");
+        findBook.setId("findBook-button");
+        findBook.setStyle("-fx-background-color:#01FFFF;");
+        findBook.setOnAction(e->{
+            stage.setScene(new BookFindingView().execute(stage));
         });
 
-        Button getVerificationStatus = new Button("-Verification Status-");
-        root1.add(getVerificationStatus, 7, 8);
+        findBookOrClient.getItems().addAll(findBook);
+        mainPane.setTop(menuBar);
 
+        MenuItem findClients = new MenuItem("-Find Clients-");
+        findClients.setStyle("-fx-font-weight: bold;");
+        findClients.setId("findClients-button");
+        findClients.setStyle("-fx-background-color:#01FFFF;");
+        findClients.setOnAction(e->{
+            stage.setScene(new ClientFindingView().execute(stage));
+        });
+
+        findBookOrClient.getItems().addAll(findClients);
+        mainPane.setTop(menuBar);
+
+
+        MenuItem getVerificationStatus = new MenuItem("-Verification Status-");
         getVerificationStatus.setOnAction(e -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Your Account Is Verified*");
@@ -157,35 +190,42 @@ public class HomeView {
 
         });
 
-        Button createClientButton = new Button("-Create Client Button-");
-        root1.add(createClientButton, 7, 9);
-
+        MenuItem createClientButton = new MenuItem("-Create Client Button-");
         createClientButton.setOnAction(e->{
             stage.setScene(new ClientSignUpView().execute(stage));
         });
 
-        Button createBookButton = new Button("-Create Book Button-");
-        root1.add(createBookButton, 7, 10);
-
+        MenuItem createBookButton = new MenuItem("-Create Book Button-");
         createBookButton.setOnAction(e->{
             stage.setScene(new BookStockRegistrationView().execute(stage));
         });
 
-//        Button createCartelButton = new Button("-Create Cartel Button-");
-//        root1.add(createCartelButton, 7, 12);
-//
-//        createCartelButton.setOnAction(e->{
-//            stage.setScene(new CartelView().execute(stage));
-//        });
+        createMenu.getItems().addAll(getVerificationStatus, createClientButton, createBookButton);
 
-        Button logOutButton = new Button("Log-Out");
-        root1.add(logOutButton, 7, 14);
+        menuBar.getMenus().add(createMenu);
+        menuBar.getMenus().add(findBookOrClient);
+        menuBar.getMenus().add(logout);
+        mainPane.setTop(menuBar);
 
-        logOutButton.setOnAction(e->{
-            stage.setScene(new LoginView().execute(stage));
-        });
+        mainPane.setCenter(root1);
 
-        Scene sc = new Scene(root1, 500, 500);
+        HBox hBox=new HBox();
+
+        // create a background fill
+        BackgroundFill background_fill = new BackgroundFill(Color.ROSYBROWN,
+                CornerRadii.EMPTY, Insets.EMPTY);
+
+        // create Background
+        Background background = new Background(background_fill);
+
+        // set background
+        root1.setBackground(background);
+
+
+
+        root1.setStyle("-fx-background-image: url('img_1.png')");
+        Scene sc = new Scene(mainPane, 1000, 729);
+        sc.getStylesheets().add("style.css");
         stage.setTitle("Home");
 
         return sc;

@@ -1,7 +1,7 @@
 package AbstractFactory;
 
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
-import Login.LoginView;
+import views.LoginView;
 import javafx.stage.Stage;
 import model.Employee;
 
@@ -12,7 +12,7 @@ public class AdministratorFactory implements StatusCategory{
     Stage primaryStage = null;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setScene(new LoginView().execute(primaryStage));
+        primaryStage.setScene(new LoginView().showView(primaryStage));
         primaryStage.show();
     }
 

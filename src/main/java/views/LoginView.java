@@ -1,4 +1,4 @@
-package Login;
+package views;
 
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
@@ -8,11 +8,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Employee;
 
 public class LoginView {
-    public Scene execute(Stage stage) {
+    public Scene showView(Stage stage) {
+
+
         GridPane root = new GridPane();
         root.setHgap(10);
         root.setVgap(10);
@@ -21,16 +25,25 @@ public class LoginView {
 
 
         Label userLabel = new Label("Username:");
+        userLabel.setTextFill(Color.web("white"));
+        userLabel.setStyle("-fx-font-weight: bold;");
         TextField userField = new TextField();
         root.add(userLabel, 1, 3);
         root.add(userField, 2, 3);
 
         Label passwordLabel = new Label("Password:");
+        passwordLabel.setTextFill(Color.web("white"));
+        passwordLabel.setStyle("-fx-font-weight: bold;");
         PasswordField passwordField = new PasswordField();
         root.add(passwordLabel, 1, 4);
         root.add(passwordField, 2, 4);
 
         Button loginButton = new Button("Log in");
+        //loginButton.setStyle("-fx-font-weight: bold;");
+        loginButton.setId("loginButton-button");
+        loginButton.setStyle("-fx-background-color:#95ff00;");
+        HBox h=new HBox();
+        h.getChildren().add(loginButton);
         root.add(loginButton, 2, 10);
 
         loginButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -63,14 +76,21 @@ public class LoginView {
         });
 
         Button signUp = new Button("Sign up");
+        signUp.setStyle("-fx-font-weight: bold;");
+        signUp.setId("signUp-button");
+        signUp.setStyle("-fx-background-color:#95ff00;");
+        HBox h1=new HBox();
+        h1.getChildren().add(signUp);
         root.add(signUp, 2, 11);
 
         signUp.setOnAction(e->{
             stage.setScene(new SignUpView().execute(stage));
         });
 
-        Scene sc = new Scene(root, 400, 350);
+        root.setStyle("-fx-background-image: url('library.png')");
+        Scene scene = new Scene(root, 693, 426);
+        scene.getStylesheets().add("style.css");
         stage.setTitle("Log in");
-        return sc;
+        return scene;
     }
 }
