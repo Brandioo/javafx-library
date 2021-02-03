@@ -1,5 +1,6 @@
 package views;
 
+import LibraryManagementFunctionFactory.EmployeeFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -7,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -52,7 +54,7 @@ public class LoginView {
                 String user = userField.getText();
                 String password = passwordField.getText();
 
-                LibraryManagementOptionsFactory uc = new LibraryManagementOptionsFactory();
+                EmployeeFactory uc = new EmployeeFactory();
                 Employee loggedIn = uc.logIn(user, password);
 
 
@@ -87,8 +89,23 @@ public class LoginView {
             stage.setScene(new SignUpView().execute(stage));
         });
 
+        BorderPane mainPane = new BorderPane();
+        MenuBar menuBar = new MenuBar();
+
+        Label backLabel=new Label("Back");
+        backLabel.setStyle("-fx-font-weight: bold;");
+        Menu back=new Menu("", backLabel);
+        backLabel.setOnMouseClicked(e->{
+            SecondView secondView= new SecondView();
+            stage.setScene(secondView.showView(stage));
+        });
+
+        menuBar.getMenus().add(back);
+        mainPane.setTop(menuBar);
+
         root.setStyle("-fx-background-image: url('library.png')");
-        Scene scene = new Scene(root, 693, 426);
+        mainPane.setCenter(root);
+        Scene scene = new Scene(mainPane, 693, 426);
         scene.getStylesheets().add("style.css");
         stage.setTitle("Log in");
         return scene;

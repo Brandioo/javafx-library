@@ -1,10 +1,11 @@
 package vendingMachine.models;
 
 
-import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
+import LibraryManagementFunctionFactory.*;
 import model.Book;
 import model.Cartel;
 import model.CartelRecord;
+import model.Client;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,8 +15,8 @@ import java.util.Scanner;
 
 public class VendingMachine {
     Scanner sc = new Scanner(System.in);
-    LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
-    List<Book> books=libraryManagementOptionsFactory.findAllBookList();
+    BookFactory bookFactory=new BookFactory();
+    List<Book> books=bookFactory.findAllBookList();
     private int balance = 0;
     private int diffRemainingAmount;
 
@@ -49,17 +50,17 @@ public class VendingMachine {
                 balance += book.getPrice();
 
                 if (coins == book.getPrice()) {
-                    inputOfCartel();
+                    Cartel cartel = inputOfCartel();
 
-                    inputOfCartelRecord(book);
+                    inputOfCartelRecord(book, cartel);
 
                     System.out.println("--------------------------------------------------");
                     System.out.println("Here is Your Product " + book.getBookName() + ". Enjoy!");
                     book.setQuantity(book.getQuantity() - 1);
                 } else if (coins > book.getPrice()) {
-                    inputOfCartel();
+                    Cartel cartel = inputOfCartel();
 
-                    inputOfCartelRecord(book);
+                    inputOfCartelRecord(book, cartel);
 
                     System.out.println("--------------------------------------------------");
                     book.setQuantity(book.getQuantity() - 1);
@@ -87,23 +88,23 @@ public class VendingMachine {
                         System.out.println("Not Supported. Enter another coin (10,20,50,100)");
 
                     }
-
+                        book.setQuantity(book.getQuantity() - 1);
                         int leftOverAfterPilaf = book.getPrice() - coins;
                         double totalLeftOverAfterPilaf = Math.round(leftOverAfterPilaf * 1000.0) / 1000.0;
                         if (book.getPrice() < coins) {
 
-                            inputOfCartel();
+                            Cartel cartel = inputOfCartel();
 
-                            inputOfCartelRecord(book);
+                            inputOfCartelRecord(book,cartel);
 
                             System.out.println("LeftOver given To You is- " + totalLeftOverAfterPilaf);
                             System.out.println("Here is Your Product " + book.getBookName() + ". Enjoy!");
 
                         } else if (book.getPrice() == coins) {
 
-                            inputOfCartel();
+                            Cartel cartel = inputOfCartel();
 
-                            inputOfCartelRecord(book);
+                            inputOfCartelRecord(book, cartel);
 
                             System.out.println("LeftOver given To You is- " + totalLeftOverAfterPilaf);
                             System.out.println("Here is Your Product " + book.getBookName() + ". Enjoy!");
@@ -116,28 +117,30 @@ public class VendingMachine {
 
         private Cartel inputOfCartel()
         {
-            LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
+            ClientFactory clientFactory=new ClientFactory();
+            EmployeeFactory employeeFactory=new EmployeeFactory();
+            CartelFactory cartelFactory=new CartelFactory();
             Cartel cartel=new Cartel();
             System.out.println("Input the Client ID: ");
             int clientId;
             clientId=sc.nextInt();
             System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
-            cartel.setClient(libraryManagementOptionsFactory.findClientByID(clientId));
+            cartel.setClient(clientFactory.findClientByID(clientId));
             System.out.println("Input the Employee ID: ");
             int employeeID;
             employeeID=sc.nextInt();
-            cartel.setEmployee(libraryManagementOptionsFactory.findAllEmployeesByID(employeeID));
+            cartel.setEmployee(employeeFactory.findAllEmployeesByID(employeeID));
             System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
             cartel.setCreatedOn(LocalDateTime.now());
             System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
-            libraryManagementOptionsFactory.createCartel(cartel);
+            cartelFactory.createCartel(cartel);
             return cartel;
 
         }
 
-    private CartelRecord inputOfCartelRecord(Book book)
+    private CartelRecord inputOfCartelRecord(Book book, Cartel cartel)
     {
-        LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
+        CartelRecordFactory cartelRecordFactory=new CartelRecordFactory();
         CartelRecord cartelRecord=new CartelRecord();
         cartelRecord.setDataStarted(LocalDateTime.now());
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
@@ -157,13 +160,13 @@ public class VendingMachine {
         int minute=sc.nextInt();
         System.out.println("--------BackEnd--------");
         cartelRecord.setEndData(LocalDateTime.of(year,month,day,hour,minute));
-        cartelRecord.setCartel(inputOfCartel());
+        cartelRecord.setCartel(cartel);
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
         cartelRecord.setBook(book);
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
         cartelRecord.setCreatedOn(LocalDateTime.now());
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
-        libraryManagementOptionsFactory.createCartelRecord(cartelRecord);
+        cartelRecordFactory.createCartelRecord(cartelRecord);
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=_-_-_-_-_-_=");
         return cartelRecord;
     }

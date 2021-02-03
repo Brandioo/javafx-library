@@ -1,5 +1,6 @@
 package views;
 
+import LibraryManagementFunctionFactory.BookFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -50,7 +51,7 @@ public class BookFindingView {
         Button findBookButton = new Button("-Find-");
         findBookButton.setTextFill(Color.web("black"));
         findBookButton.setStyle("-fx-font-weight: bold;");
-        findBookButton.setId("loginButton-button");
+        findBookButton.setId("findBookButton-button");
         findBookButton.setStyle("-fx-background-color:#09eab6;");
         HBox h=new HBox();
         h.getChildren().add(findBookButton);
@@ -64,8 +65,8 @@ public class BookFindingView {
                 //String description = descriptionArea.getText();
                 // boolean isRememberMe = remember.isSelected();
 
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
-                Book findBook = libraryManagementOptionsFactory.findBooksByName(bookName);
+                BookFactory bookFactory = new BookFactory();
+                Book findBook = bookFactory.findBooksByName(bookName);
 
                 if (findBook==null && currentBook.getQuantity()<=0) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);

@@ -1,5 +1,6 @@
 package views;
 
+import LibraryManagementFunctionFactory.BookFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,35 +24,34 @@ public class BookStockRegistrationView {
         root1.setHgap(10);
         root1.setVgap(10);
         root1.setPadding(new Insets(10, 10, 10, 10));
-        root1.setAlignment(Pos.CENTER);
 
-        Label bookNameLabel = new Label("Name: ");
+        Label bookNameLabel = new Label("Name:    ");
         bookNameLabel.setTextFill(Color.WHITE);
         bookNameLabel.setStyle("-fx-font-weight: bold;");
         TextField bookNameField = new TextField();
-        root1.add(bookNameLabel, 1, 2);
-        root1.add(bookNameField, 2, 2);
+        root1.add(bookNameLabel, 1, 1);
+        root1.add(bookNameField, 4, 1);
 
-        Label genereLabel = new Label("Genere: ");
+        Label genereLabel = new Label("Genere:    ");
         genereLabel.setTextFill(Color.WHITE);
         genereLabel.setStyle("-fx-font-weight: bold;");
         TextField genereField = new TextField();
         root1.add(genereLabel, 1, 3);
-        root1.add(genereField, 2, 3);
+        root1.add(genereField, 4, 3);
 
-        Label isbnLabel = new Label("ISBN Code: ");
+        Label isbnLabel = new Label("ISBN:    ");
         isbnLabel.setTextFill(Color.WHITE);
         isbnLabel.setStyle("-fx-font-weight: bold;");
         TextField isbnField = new TextField();
-        root1.add(isbnLabel, 1, 4);
-        root1.add(isbnField, 2, 4);
+        root1.add(isbnLabel, 1, 5);
+        root1.add(isbnField, 4, 5);
 
-        Label descriptionLabel = new Label("Description: ");
+        Label descriptionLabel = new Label("Description:    ");
         descriptionLabel.setTextFill(Color.WHITE);
         descriptionLabel.setStyle("-fx-font-weight: bold;");
-        root1.add(descriptionLabel, 1, 5);
+        root1.add(descriptionLabel, 1, 7);
         TextArea descriptionArea = new TextArea();
-        root1.add(descriptionArea, 2, 5);
+        root1.add(descriptionArea, 4, 7);
 
         // Creates an integer spinner with 1 as min, 10 as max and 2 as initial value
         Spinner<Integer> spinner1 = new Spinner<>(1, 1000, 1);
@@ -75,11 +75,11 @@ public class BookStockRegistrationView {
 
 //
 
-        Label quantityLabel=new Label("Quantity: ");
+        Label quantityLabel=new Label("Quantity:    ");
         quantityLabel.setTextFill(Color.WHITE);
         quantityLabel.setStyle("-fx-font-weight: bold;");
-        root1.add(quantityLabel,1,6);
-        root1.add(spinner1,2,6);
+        root1.add(quantityLabel,1,9);
+        root1.add(spinner1,4,9);
 
 
 //        Label quantityLabel = new Label("Quantity: ");
@@ -90,11 +90,11 @@ public class BookStockRegistrationView {
 //        TextField quantityField = new TextField();
 //        root1.add(quantityField, 2, 8);
 
-        Label priceLabel=new Label("Price: ");
+        Label priceLabel=new Label("Price:    ");
         priceLabel.setTextFill(Color.WHITE);
         priceLabel.setStyle("-fx-font-weight: bold;");
-        root1.add(priceLabel,1,7);
-        root1.add(spinner2,2,7);
+        root1.add(priceLabel,1,11);
+        root1.add(spinner2,4,11);
 
 //        Label priceLabel = new Label("Price: ");
 //        priceLabel.setTextFill(Color.web("white"));
@@ -105,12 +105,12 @@ public class BookStockRegistrationView {
 //        root1.add(priceField, 2, 8);
 
 
-        Label createdOnLabel = new Label("Created On: ");
+        Label createdOnLabel = new Label("Creation:    ");
         createdOnLabel.setTextFill(Color.WHITE);
         createdOnLabel.setStyle("-fx-font-weight: bold;");
         TextField createdOnField = new TextField();
-        root1.add(createdOnLabel, 1, 8);
-        root1.add(createdOnField, 2, 8);
+        root1.add(createdOnLabel, 1, 12);
+        root1.add(createdOnField, 4, 12);
 
         Button createClientButton = new Button("-Book Creation-");
         createClientButton.setStyle("-fx-font-weight: bold;"); //letters are written in bold type
@@ -119,7 +119,7 @@ public class BookStockRegistrationView {
         createClientButton.setStyle("-fx-background-color:#000000;"); //Background is Black
         HBox h1=new HBox(); //Declare h box
         h1.getChildren().add(createClientButton); //Adding button inside the hBox
-        root1.add(createClientButton, 2, 18);
+        root1.add(createClientButton, 4, 18);
 
         createClientButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -135,8 +135,8 @@ public class BookStockRegistrationView {
                 //String description = descriptionArea.getText();
                 // boolean isRememberMe = remember.isSelected();
 
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
-                boolean isRegistered = libraryManagementOptionsFactory.createBookButton(bookName, genere, isbn, description, quantity, price, createdOn);
+                BookFactory bookFactory = new BookFactory();
+                boolean isRegistered = bookFactory.createBookButton(bookName, genere, isbn, description, quantity, price, createdOn);
 
                 if (!isRegistered) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -146,7 +146,7 @@ public class BookStockRegistrationView {
                 } else {
                     Employee currentEmployee=new Employee();
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    successAlert.setHeaderText("The user was registered successfully");
+                    successAlert.setHeaderText("The book was registered successfully");
                     successAlert.showAndWait();
                     stage.setScene(new HomeView(currentEmployee).execute(stage));
                     successAlert.close();
@@ -174,7 +174,7 @@ public class BookStockRegistrationView {
 
         root1.setStyle("-fx-background-image: url('img_8.png')");
         mainPane.setCenter(root1);
-        Scene scene = new Scene(mainPane, 564, 870);
+        Scene scene = new Scene(mainPane, 570, 870);
         scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.setTitle("Register Books");

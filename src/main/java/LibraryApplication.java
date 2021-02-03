@@ -1,8 +1,6 @@
 //Brand Citozi SDA-Academy
 //My Group: Xhoi Hysa, Stivi Koko, Hysnije Agalliu
-import Page.ClassCall;
-import org.hibernate.Session;
-import views.LoginView;
+import views.FirstView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import util.HibernateUtils;
@@ -123,8 +121,8 @@ public class LibraryApplication extends Application {
        // ClassCall.rendering();
 
         HibernateUtils.getSessionFactory().openSession();
-        LoginView loginView=new LoginView();
-        primaryStage.setScene(loginView.showView(primaryStage));
+        FirstView firstView=new FirstView();
+        primaryStage.setScene(firstView.showView(primaryStage));
         primaryStage.show();
 
 
@@ -132,17 +130,9 @@ public class LibraryApplication extends Application {
 
 
     public static void main(String[] args) throws Exception {
-        ClassCall.rendering();
-        Session session = HibernateUtils.getSessionFactory().openSession();
-//        System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
-//        System.out.println("Print All From Employee: ");
-
-//       LibraryManagementOptionsFactory libraryManagementOptionsFactory=new LibraryManagementOptionsFactory();
-//       libraryManagementOptionsFactory.findAllEmployees();
+        HibernateUtils.getSessionFactory();
         launch(args);
 
-
-
-
+//        new AdministratorFactory();
     }
 }

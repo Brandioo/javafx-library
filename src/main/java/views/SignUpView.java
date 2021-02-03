@@ -1,5 +1,6 @@
 package views;
 
+import LibraryManagementFunctionFactory.EmployeeFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -126,8 +127,8 @@ public class SignUpView {
                 //String description = descriptionArea.getText();
                // boolean isRememberMe = remember.isSelected();
 
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
-                boolean isRegistered = libraryManagementOptionsFactory.signUp(firstName, lastName, dateOfBirth, email, phoneNumber, role, user, password, verfiedPassword, createdOn);
+                EmployeeFactory employeeFactory = new EmployeeFactory();
+                boolean isRegistered = employeeFactory.signUp(firstName, lastName, dateOfBirth, email, phoneNumber, role, user, password, verfiedPassword, createdOn);
 
                 if (!isRegistered) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);

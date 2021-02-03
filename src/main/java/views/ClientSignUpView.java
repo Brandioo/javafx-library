@@ -1,5 +1,6 @@
 package views;
 
+import LibraryManagementFunctionFactory.ClientFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -84,8 +85,8 @@ public class ClientSignUpView {
                 //String description = descriptionArea.getText();
                 // boolean isRememberMe = remember.isSelected();
 
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
-                boolean isRegistered = libraryManagementOptionsFactory.createClientButton(firstName, lastName, email, phoneNumber, address, createdOn);
+                ClientFactory clientFactory = new ClientFactory();
+                boolean isRegistered = clientFactory.createClientButton(firstName, lastName, email, phoneNumber, address, createdOn);
 
                 if (!isRegistered) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);

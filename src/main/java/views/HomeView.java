@@ -1,6 +1,6 @@
 package views;
 
-import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
+import LibraryManagementFunctionFactory.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -40,10 +40,10 @@ public class HomeView {
 
             @Override
             public void handle(ActionEvent arg0) {
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
+                CartelRecordFactory cartelRecordFactory = new CartelRecordFactory();
                 Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setHeaderText("All Cartels-Record Information");
-                successAlert.setContentText(libraryManagementOptionsFactory.findAllCartelRecord());
+                successAlert.setContentText(cartelRecordFactory.findAllCartelRecord());
                 successAlert.showAndWait();
                 System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             }
@@ -56,15 +56,26 @@ public class HomeView {
             @Override
             public void handle(ActionEvent arg0) {
 
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
+                EmployeeFactory employeeFactory = new EmployeeFactory();
                 Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setHeaderText("All Users Information");
-                successAlert.setContentText(libraryManagementOptionsFactory.findAllEmployees());
+                successAlert.setContentText(employeeFactory.findAllEmployees());
                 successAlert.showAndWait();
                 System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             }
 
         });
+
+        MenuItem getAllUserTable = new MenuItem("-Get All User Table-");
+        getAllUserTable.setStyle("-fx-font-weight: bold;");
+        getAllUserTable.setId("findBook-button");
+        getAllUserTable.setStyle("-fx-background-color:#01FFFF;");
+        getAllUserTable.setOnAction(event -> {
+            AllUsersView av= new AllUsersView(currentUser);
+            Scene scene= av.showView(stage);
+            stage.setScene(scene);
+        });
+
 
         MenuItem getAllClients = new MenuItem("-Get All Client Info-");
         getAllClients.setOnAction(new EventHandler<ActionEvent>() {
@@ -72,25 +83,36 @@ public class HomeView {
             @Override
             public void handle(ActionEvent arg0) {
 
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
+                ClientFactory clientFactory = new ClientFactory();
                 Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setHeaderText("All Clients Information");
-                successAlert.setContentText(libraryManagementOptionsFactory.findAllClient());
+                successAlert.setContentText(clientFactory.findAllClient());
                 successAlert.showAndWait();
                 System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             }
 
         });
 
+        MenuItem getAllClientTable = new MenuItem("-Get All Client Table-");
+        getAllClientTable.setStyle("-fx-font-weight: bold;");
+        getAllClientTable.setId("getAllClientTable-button");
+        getAllClientTable.setStyle("-fx-background-color:#01FFFF;");
+        getAllClientTable.setOnAction(event -> {
+            AllClientView av= new AllClientView(currentUser);
+            Scene scene= av.showView(stage);
+            stage.setScene(scene);
+        });
+
+
         MenuItem getAllCartels = new MenuItem("-Get All Cartel Info-");
         getAllCartels.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent arg0) {
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
+                CartelFactory cartelFactory = new CartelFactory();
                 Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setHeaderText("All Cartels Information");
-                successAlert.setContentText(libraryManagementOptionsFactory.findAllCartels());
+                successAlert.setContentText(cartelFactory.findAllCartels());
                 successAlert.showAndWait();
                 System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             }
@@ -105,17 +127,25 @@ public class HomeView {
 
             @Override
             public void handle(ActionEvent arg0) {
-                LibraryManagementOptionsFactory libraryManagementOptionsFactory = new LibraryManagementOptionsFactory();
+                BookFactory bookFactory = new BookFactory();
                 Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setHeaderText("All Books Information");
-                successAlert.setContentText(libraryManagementOptionsFactory.findAllBook());
+                successAlert.setContentText(bookFactory.findAllBook());
                 successAlert.showAndWait();
                 System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             }
 
         });
 
-
+        MenuItem getAllBookTable = new MenuItem("-Get All Book Table-");
+        getAllBookTable.setStyle("-fx-font-weight: bold;");
+        getAllBookTable.setId("getAllBookTable-button");
+        getAllBookTable.setStyle("-fx-background-color:#01FFFF;");
+        getAllBookTable.setOnAction(event -> {
+            AllBookView av= new AllBookView(currentUser);
+            Scene scene= av.showView(stage);
+            stage.setScene(scene);
+        });
 
         MenuItem getUser = new MenuItem("-Get Current User Info-");
         getUser.setOnAction(e -> {
@@ -126,7 +156,8 @@ public class HomeView {
 
         });
 
-        userMenu.getItems().addAll(getUser, getAllUser, getAllClients, getAllBooks, getAllCartels, getAllCartelRecord);
+        userMenu.getItems().addAll(getUser, getAllUser, getAllUserTable, getAllClients, getAllClientTable, getAllBooks,
+                getAllBookTable, getAllCartels, getAllCartelRecord);
 
         Label logOutLabel=new Label("Log Out");
         Menu logout=new Menu("", logOutLabel);
@@ -166,7 +197,15 @@ public class HomeView {
             stage.setScene(new BookFindingView().execute(stage));
         });
 
-        findBookOrClient.getItems().addAll(findBook);
+        MenuItem findEmployee = new MenuItem("-Find Employee-");
+        findEmployee.setStyle("-fx-font-weight: bold;");
+        findEmployee.setId("findBook-button");
+        findEmployee.setStyle("-fx-background-color:#01FFFF;");
+        findEmployee.setOnAction(e->{
+            stage.setScene(new FindEmployeeView().execute(stage));
+        });
+
+        findBookOrClient.getItems().addAll(findBook, findEmployee);
         mainPane.setTop(menuBar);
 
         MenuItem findClients = new MenuItem("-Find Clients-");
