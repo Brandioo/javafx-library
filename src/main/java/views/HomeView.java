@@ -1,5 +1,14 @@
 package views;
 
+import BookView.AllBookView;
+import BookView.BookFindingView;
+import BookView.BookStockRegistrationView;
+import BookView.BuyBookView;
+import ClientView.AllClientView;
+import ClientView.ClientFindingView;
+import ClientView.ClientSignUpView;
+import EmployeesView.AllUsersView;
+import EmployeesView.FindEmployeeView;
 import LibraryManagementFunctionFactory.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,7 +20,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Employee;
-import vendingMachine.models.VendingMachine;
 
 public class HomeView {
     private Employee currentUser;
@@ -179,10 +187,12 @@ public class HomeView {
 
             @Override
             public void handle(ActionEvent arg0) {
-                VendingMachine vendingMachine=new VendingMachine();
+//                VendingMachine vendingMachine=new VendingMachine();
+//                vendingMachine.start();
+                BuyBookView buyBookView=new BuyBookView();
+                buyBookView.execute(stage);
                 Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setHeaderText("Buying Book");
-                vendingMachine.start();
                 successAlert.showAndWait();
                 System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             }

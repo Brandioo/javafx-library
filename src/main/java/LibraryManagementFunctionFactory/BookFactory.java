@@ -68,6 +68,21 @@ public class BookFactory {
         return book;
     }
 
+    public Book findBooksByISBN(String isbn) {
+
+        Query query = session.createQuery("select b from Book b where b.isbn=:isbn");
+        query.setParameter("isbn", isbn);
+        List<Book> books = query.getResultList();
+
+        Book book = null;
+
+        if (!books.isEmpty()) {
+            return books.get(0);
+        }
+        session.close();
+        return book;
+    }
+
     public boolean createBookButton(String bookName, String genere, String isbn,
                                     String description, Integer quantity, Integer price, LocalDateTime createdOn) {
 
@@ -87,15 +102,15 @@ public class BookFactory {
     }
 
     public void editBook(Book updatedBook, int position) {
-////        this.books.set(position, updatedBook);
-////        createBook(updatedBook);
+//        this.books.set(position, updatedBook);
+//        createBook(updatedBook);
 //        Session session = sessionFactory.openSession();
 //        Transaction tx = session.beginTransaction();
 //
 //        String hqlUpdate = "update Customer c set c.name = :newName where c.name = :oldName";
 //// or String hqlUpdate = "update Customer set name = :newName where name = :oldName";
 //        int updatedEntities = s.createQuery( hqlUpdate )
-//                .setString( "newName",  )
+//                .setString( "newName",   )
 //                .setString( "oldName", oldName )
 //                .executeUpdate();
 //        tx.commit();

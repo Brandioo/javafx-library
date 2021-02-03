@@ -1,4 +1,4 @@
-package views;
+package ClientView;
 
 import LibraryManagementFunctionFactory.ClientFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Client;
 import model.Employee;
+import views.HomeView;
 
 import java.util.List;
 

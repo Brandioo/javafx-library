@@ -1,7 +1,6 @@
-package views;
+package BookView;
 
 import LibraryManagementFunctionFactory.BookFactory;
-import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -17,8 +16,8 @@ import javafx.util.converter.IntegerStringConverter;
 import model.Book;
 import model.Client;
 import model.Employee;
+import views.HomeView;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class AllBookView {
@@ -227,7 +226,7 @@ public class AllBookView {
 //        });
 
 
-        table.getColumns().addAll(bookNameColumn, genereColumn, ISBNColumn, descriptionColumn, priceColumn);//, quantityColumn, priceColumn);
+        table.getColumns().addAll(bookNameColumn, genereColumn, ISBNColumn, descriptionColumn, quantityColumn, priceColumn);//, quantityColumn, priceColumn);
 
 
         Button save= new Button("Save");
@@ -236,7 +235,13 @@ public class AllBookView {
             stage.setScene(hv.execute(stage));
         });
 
-        root.getChildren().addAll(table, save);
+        Button buyBook= new Button("Buy Book");
+        buyBook.setOnAction(e->{
+            BuyBookView buyBookView = new BuyBookView(currentUser);
+            stage.setScene(buyBookView.execute(stage));
+        });
+
+        root.getChildren().addAll(table, save, buyBook);
 
         Scene scene= new Scene(root, 450, 450);
         return scene;

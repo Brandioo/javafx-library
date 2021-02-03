@@ -1,4 +1,4 @@
-package views;
+package ClientView;
 
 import LibraryManagementFunctionFactory.ClientFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import model.Book;
 import model.Client;
 import model.Employee;
+import views.HomeView;
 
 public class ClientFindingView {
     private Employee currentUser;
@@ -76,7 +77,11 @@ public class ClientFindingView {
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("Client Found");
                     successAlert.setContentText("The Credentials are okay");
-                    successAlert.setContentText(firstName.toString());
+                    successAlert.setContentText("Client First Name: " + findClient.getFirstName() + "\n"
+                            + "Client Last Name: " + findClient.getLastName() + "\n"
+                            + "Client Email: " + findClient.getEmail() + "\n"
+                            + "Client Phone Number: " + findClient.getPhoneNumber() + "\n"
+                            + "Client Address: " + findClient.getAddress());
                     successAlert.showAndWait();
                     successAlert.close();
                 }

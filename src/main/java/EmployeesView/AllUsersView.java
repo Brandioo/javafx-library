@@ -1,4 +1,4 @@
-package views;
+package EmployeesView;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +23,7 @@ import javafx.util.converter.DateStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import model.Employee;
+import views.HomeView;
 
 public class AllUsersView {
     private Employee currentEmployee;

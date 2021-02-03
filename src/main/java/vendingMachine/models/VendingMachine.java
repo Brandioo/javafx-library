@@ -21,7 +21,6 @@ public class VendingMachine {
     private int diffRemainingAmount;
 
     public void start() {
-        System.out.println("Welcome to SDA Vending Machine");
 
         while (true) {
             System.out.println("--------------------------------------------------");

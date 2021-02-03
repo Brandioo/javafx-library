@@ -1,7 +1,6 @@
-package views;
+package BookView;
 
 import LibraryManagementFunctionFactory.BookFactory;
-import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -15,12 +14,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Book;
 import model.Employee;
-
-import java.time.LocalDateTime;
+import views.HomeView;
 
 public class BookFindingView {
     private Employee currentUser;
     private Book currentBook;
+
     public BookFindingView(Employee currentUser) {
         this.currentUser = currentUser;
     }
@@ -53,7 +52,7 @@ public class BookFindingView {
         findBookButton.setStyle("-fx-font-weight: bold;");
         findBookButton.setId("findBookButton-button");
         findBookButton.setStyle("-fx-background-color:#09eab6;");
-        HBox h=new HBox();
+        HBox h = new HBox();
         h.getChildren().add(findBookButton);
         root1.add(findBookButton, 2, 5);
 
@@ -68,7 +67,7 @@ public class BookFindingView {
                 BookFactory bookFactory = new BookFactory();
                 Book findBook = bookFactory.findBooksByName(bookName);
 
-                if (findBook==null && currentBook.getQuantity()<=0) {
+                if (findBook == null && currentBook.getQuantity() <= 0) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setHeaderText("There was an error");
                     errorAlert.setContentText("Book not available");
@@ -77,7 +76,11 @@ public class BookFindingView {
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("Book Found");
                     successAlert.setContentText("The Credentials are okay");
-                    successAlert.setContentText(findBook.toString());
+                    successAlert.setContentText("Book Name: " + findBook.getBookName() + "\n"
+                            + "Book Genere: " + findBook.getGenere() + "\n"
+                            + "Book Quantity: " + findBook.getQuantity() + "\n"
+                            + "Book Price: " + findBook.getPrice()
+                            + "Book ISBN: (ISBN Code Used For Buying The Book)" + findBook.getIsbn() + "\n");
                     successAlert.showAndWait();
                     successAlert.close();
                 }
@@ -89,15 +92,27 @@ public class BookFindingView {
         BorderPane mainPane = new BorderPane();
         MenuBar menuBar = new MenuBar();
 
-        Label backLabel=new Label("Back");
-        backLabel.setStyle("-fx-font-weight: bold;");
-        Menu back=new Menu("", backLabel);
-        backLabel.setOnMouseClicked(e->{
-            HomeView homeView= new HomeView(currentUser);
+        Label backLabel = new Label("Home View");
+//        backLabel.setStyle("-fx-font-weight: bold;");
+        Menu back = new Menu("", backLabel);
+        backLabel.setOnMouseClicked(e -> {
+            HomeView homeView = new HomeView(currentUser);
             stage.setScene(homeView.execute(stage));
         });
 
         menuBar.getMenus().add(back);
+        mainPane.setTop(menuBar);
+
+
+        Label buyBookLabel = new Label("Buy Book");
+        buyBookLabel.setStyle("-fx-font-weight: bold;");
+        Menu buyBook = new Menu("", buyBookLabel);
+        buyBookLabel.setOnMouseClicked(e -> {
+            BuyBookView buyBookView = new BuyBookView(currentUser);
+            stage.setScene(buyBookView.execute(stage));
+        });
+
+        menuBar.getMenus().add(buyBook);
         mainPane.setTop(menuBar);
 
 

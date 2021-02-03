@@ -1,4 +1,4 @@
-package views;
+package ClientView;
 
 import LibraryManagementFunctionFactory.ClientFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Employee;
+import views.HomeView;
 
 import java.time.LocalDateTime;
 

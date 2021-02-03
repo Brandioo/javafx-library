@@ -1,4 +1,4 @@
-package views;
+package EmployeesView;
 
 import LibraryManagementFunctionFactory.EmployeeFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Book;
 import model.Employee;
+import views.HomeView;
 
 public class FindEmployeeView {
     private Employee currentUser;

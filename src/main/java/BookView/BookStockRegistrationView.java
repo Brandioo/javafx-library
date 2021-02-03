@@ -1,4 +1,4 @@
-package views;
+package BookView;
 
 import LibraryManagementFunctionFactory.BookFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Employee;
+import views.HomeView;
 
 import java.time.LocalDateTime;
 
