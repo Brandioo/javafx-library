@@ -57,7 +57,7 @@ public class AllUsersView {
                 String newFirstName=(String) t.getNewValue();
 
                 currentEmployee.setFirstName(newFirstName);
-                employeeFactory.editEmployee(currentEmployee, pos);
+                employeeFactory.editEmployee(currentEmployee);
             }
 
         });
@@ -78,7 +78,7 @@ public class AllUsersView {
                 String newLastName=(String) t.getNewValue();
 
                 currentUser.setLastName(newLastName);
-                employeeFactory.editEmployee(currentUser, pos);
+                employeeFactory.editEmployee(currentUser);
             }
 
         });
@@ -97,7 +97,7 @@ public class AllUsersView {
                 LocalDate newDateOfBirth= (LocalDate) t.getNewValue();
 
                 currentUser.setDateOfBirth(newDateOfBirth);
-                employeeFactory.editEmployee(currentUser, pos);
+                employeeFactory.editEmployee(currentUser);
             }
 
         });
@@ -116,7 +116,7 @@ public class AllUsersView {
                 String newEmail=(String) t.getNewValue();
 
                 currentEmployee.setEmail(newEmail);
-                employeeFactory.editEmployee(currentEmployee, pos);
+                employeeFactory.editEmployee(currentEmployee);
             }
 
         });
@@ -135,7 +135,7 @@ public class AllUsersView {
                 String newPhoneNumber=(String) t.getNewValue();
 
                 currentEmployee.setPhoneNumber(newPhoneNumber);
-                employeeFactory.editEmployee(currentEmployee, pos);
+                employeeFactory.editEmployee(currentEmployee);
             }
 
         });
@@ -154,7 +154,7 @@ public class AllUsersView {
                 String newRole=(String) t.getNewValue();
 
                 currentEmployee.setRole(newRole);
-                employeeFactory.editEmployee(currentEmployee, pos);
+                employeeFactory.editEmployee(currentEmployee);
             }
 
         });
@@ -173,7 +173,7 @@ public class AllUsersView {
                 String newUser=(String) t.getNewValue();
 
                 currentEmployee.setUser(newUser);
-                employeeFactory.editEmployee(currentEmployee, pos);
+                employeeFactory.editEmployee(currentEmployee);
             }
 
         });
@@ -192,7 +192,7 @@ public class AllUsersView {
                 String newPassword=(String) t.getNewValue();
 
                 currentEmployee.setPassword(newPassword);
-                employeeFactory.editEmployee(currentEmployee, pos);
+                employeeFactory.editEmployee(currentEmployee);
             }
 
         });

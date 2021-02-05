@@ -78,7 +78,7 @@ public class CartelRegistrationView {
 //        TextField quantityField = new TextField();
 //        root1.add(quantityField, 2, 8);
 
-        Label clientID=new Label("ClientID: ");
+        Label clientID=new Label("Client ID: ");
         clientID.setTextFill(Color.BLACK);
         clientID.setStyle("-fx-font-weight: bold;");
         root1.add(clientID,2,11);

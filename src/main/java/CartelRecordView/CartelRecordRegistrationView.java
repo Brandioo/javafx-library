@@ -48,7 +48,7 @@ public class CartelRecordRegistrationView {
 
 
         Menu userMenu = new Menu("User Control");
-        userMenu.setStyle("-fx-font-weight: bold;");
+//        userMenu.setStyle("-fx-font-weight: bold;");
 
 //        Label priceLabel = new Label("Price: ");
 //        priceLabel.setTextFill(Color.web("white"));
@@ -64,7 +64,7 @@ public class CartelRecordRegistrationView {
 
         Spinner<Integer> spinner3 = new Spinner<>(1, 31, 1);
 
-        Spinner<Integer> spinner4 = new Spinner<>(1, 24, 0);
+        Spinner<Integer> spinner4 = new Spinner<>(1, 23, 0);
 
         Spinner<Integer> spinner5 = new Spinner<>(1, 59, 0);
 
@@ -204,7 +204,7 @@ public class CartelRecordRegistrationView {
         mainPane.setTop(menuBar);
 
         Label buyBookView1 = new Label("Buy Book View");
-        buyBookView1.setStyle("-fx-font-weight: bold;");
+//        buyBookView1.setStyle("-fx-font-weight: bold;");
         Menu buyBook = new Menu("", buyBookView1);
         buyBookView1.setOnMouseClicked(e -> {
             BuyBookView buyBookView = new BuyBookView(currentUser);
@@ -215,7 +215,7 @@ public class CartelRecordRegistrationView {
         mainPane.setTop(menuBar);
 
         Label homeViewLabel = new Label("Home View");
-        homeViewLabel.setStyle("-fx-font-weight: bold;");
+//        homeViewLabel.setStyle("-fx-font-weight: bold;");
         Menu homeview = new Menu("", homeViewLabel);
         homeViewLabel.setOnMouseClicked(e -> {
             HomeView homeView = new HomeView(currentUser);
@@ -234,17 +234,6 @@ public class CartelRecordRegistrationView {
         });
 
         menuBar.getMenus().add(findBookID);
-        mainPane.setTop(menuBar);
-
-        Label findCartelByIDLabel = new Label("Find Cartel ID");
-//        findEmployeeViewLabel.setStyle("-fx-font-weight: bold;");
-        Menu findCartelID = new Menu("", findCartelByIDLabel);
-        findCartelByIDLabel.setOnMouseClicked(e -> {
-            BookFindingView findBookView = new BookFindingView(currentBook);
-            stage.setScene(findBookView.execute(stage));
-        });
-
-        menuBar.getMenus().add(findCartelID);
         mainPane.setTop(menuBar);
 
         MenuItem getAllCartels = new MenuItem("-Get All Cartel Info-");

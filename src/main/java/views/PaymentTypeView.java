@@ -15,8 +15,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Book;
 import model.Cartel;
+import model.Employee;
 
 public class PaymentTypeView {
+    private Employee currentUser;
     private Cartel currentCartel;
     public Scene showView(Stage stage) {
         GridPane root = new GridPane();
@@ -83,8 +85,8 @@ public class PaymentTypeView {
         backLabel.setStyle("-fx-font-weight: bold;");
         Menu back=new Menu("", backLabel);
         backLabel.setOnMouseClicked(e->{
-            CartelRecordRegistrationView cartelRecordRegistrationView= new CartelRecordRegistrationView(currentCartel);
-            stage.setScene(cartelRecordRegistrationView.execute(stage));
+            HomeView homeView= new HomeView(currentUser);
+            stage.setScene(homeView.execute(stage));
         });
 
         menuBar.getMenus().add(back);
@@ -94,7 +96,7 @@ public class PaymentTypeView {
         mainPane.setCenter(root);
         Scene scene = new Scene(mainPane, 300, 199);
         // scene.getStylesheets().add("style.css");
-        stage.setTitle("Welcome To Library Art");
+        stage.setTitle("Payment");
         return scene;
     }
 }

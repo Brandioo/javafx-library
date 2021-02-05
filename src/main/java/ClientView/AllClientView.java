@@ -57,7 +57,7 @@ public class AllClientView {
                 String newFirstName=(String) t.getNewValue();
 
                 currentClient.setFirstName(newFirstName);
-                clientFactory.editClient(currentClient, pos);
+                clientFactory.editClient(currentClient);
             }
 
         });
@@ -78,7 +78,7 @@ public class AllClientView {
                 String newLastName=(String) t.getNewValue();
 
                 currentClient.setLastName(newLastName);
-                clientFactory.editClient(currentClient, pos);
+                clientFactory.editClient(currentClient);
             }
 
         });
@@ -117,7 +117,7 @@ public class AllClientView {
                 String newEmail=(String) t.getNewValue();
 
                 currentClient.setEmail(newEmail);
-                clientFactory.editClient(currentClient, pos);
+                clientFactory.editClient(currentClient);
             }
 
         });
@@ -136,7 +136,7 @@ public class AllClientView {
                 String newPhoneNumber=(String) t.getNewValue();
 
                 currentClient.setPhoneNumber(newPhoneNumber);
-                clientFactory.editClient(currentClient, pos);
+                clientFactory.editClient(currentClient);
             }
 
         });
@@ -155,7 +155,7 @@ public class AllClientView {
                 String newRole=(String) t.getNewValue();
 
                 currentClient.setAddress(newRole);
-                clientFactory.editClient(currentClient, pos);
+                clientFactory.editClient(currentClient);
             }
 
         });

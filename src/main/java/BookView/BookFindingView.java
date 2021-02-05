@@ -1,5 +1,6 @@
 package BookView;
 
+import CartelRecordView.CartelRecordRegistrationView;
 import LibraryManagementFunctionFactory.BookFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,12 +14,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Book;
+import model.Cartel;
 import model.Employee;
 import views.HomeView;
 
 public class BookFindingView {
     private Employee currentUser;
     private Book currentBook;
+    private Cartel currentCartel;
 
     public BookFindingView(Book currentBook) {
         this.currentBook = currentBook;
@@ -124,7 +127,7 @@ public class BookFindingView {
         cartelRecordRegistrationViewLabel.setStyle("-fx-font-weight: bold;");
         Menu registerCartelRecord = new Menu("", cartelRecordRegistrationViewLabel);
         cartelRecordRegistrationViewLabel.setOnMouseClicked(e -> {
-            BuyBookView buyBookView = new BuyBookView(currentUser);
+            CartelRecordRegistrationView buyBookView = new CartelRecordRegistrationView(currentCartel);
             stage.setScene(buyBookView.execute(stage));
         });
 

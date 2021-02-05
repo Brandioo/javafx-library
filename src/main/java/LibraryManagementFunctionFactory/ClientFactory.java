@@ -85,9 +85,14 @@ public class ClientFactory {
 
     }
 
-    public void editClient(Client updatedClient, int position) {
-        this.clients.set(position, updatedClient);
-        createClient(updatedClient);
+    public void editClient(Client updatedClient) {
+        session = HibernateUtils.getSessionFactory().openSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        session.update(updatedClient);
+
+        transaction.commit();
 
     }
 }

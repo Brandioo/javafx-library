@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import model.Book;
 import model.Employee;
 import views.HomeView;
+import views.PaymentTypeView;
 
 public class BuyBookView {
     private Employee currentUser;
@@ -67,10 +68,12 @@ public class BuyBookView {
                 //String description = descriptionArea.getText();
                 // boolean isRememberMe = remember.isSelected();
 
+
                 BookFactory bookFactory = new BookFactory();
                 Book findBook = bookFactory.findBooksByISBN(isbn);
 
-                if (findBook == null && currentBook.getQuantity() <= 0) {
+
+                if (findBook == null && findBook.getQuantity() <= 0) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setHeaderText("There was an error");
                     errorAlert.setContentText("Book not available");
@@ -79,8 +82,7 @@ public class BuyBookView {
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("Book Found");
                     successAlert.setContentText("The Credentials are okay");
-                    Integer newQuantity = findBook.getQuantity()-1;
-                    findBook.setQuantity(newQuantity);
+                    findBook.setQuantity(findBook.getQuantity()-1);
 //                    bookFactory.editBook(findBook);
                     stage.setScene(new CartelRegistrationView(findBook).execute(stage));
                     if (findBook.getQuantity() <= 5) {
@@ -107,8 +109,8 @@ public class BuyBookView {
         backLabel.setStyle("-fx-font-weight: bold;");
         Menu back = new Menu("", backLabel);
         backLabel.setOnMouseClicked(e -> {
-            HomeView homeView = new HomeView(currentUser);
-            stage.setScene(homeView.execute(stage));
+            PaymentTypeView paymentTypeView = new PaymentTypeView();
+            stage.setScene(paymentTypeView.showView(stage));
         });
 
         menuBar.getMenus().add(back);

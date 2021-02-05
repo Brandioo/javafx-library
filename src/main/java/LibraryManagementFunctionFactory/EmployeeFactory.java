@@ -125,9 +125,14 @@ public class EmployeeFactory {
         return false;
     }
 
-    public void editEmployee(Employee updatedUser, int position) {
-        this.employees.set(position, updatedUser);
-        createEmployee(updatedUser);
+    public void editEmployee(Employee updatedUser) {
+        session = HibernateUtils.getSessionFactory().openSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        session.update(updatedUser);
+
+        transaction.commit();
     }
 
 
