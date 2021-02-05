@@ -1,5 +1,6 @@
-package BookView;
+package CartelView;
 
+import BookView.BuyBookView;
 import LibraryManagementFunctionFactory.BookFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,26 +14,32 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Book;
+import model.Client;
 import model.Employee;
 import views.HomeView;
 
-public class BookFindingView {
+public class CartelFindingView {
     private Employee currentUser;
     private Book currentBook;
+    private Client currentClient;
 
-    public BookFindingView(Book currentBook) {
+    public CartelFindingView(Book currentBook) {
         this.currentBook = currentBook;
     }
 
-    public BookFindingView(Employee currentUser) {
+    public CartelFindingView(Employee currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public CartelFindingView(Client currentClient) {
+        this.currentClient = currentClient;
     }
 //    public BookFindingView(Book currentBook) {
 //        this.currentBook = currentBook;
 //    }
 
 
-    public BookFindingView() {
+    public CartelFindingView() {
     }
 
     public Scene execute(Stage stage) {
@@ -80,8 +87,7 @@ public class BookFindingView {
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("Book Found");
                     successAlert.setContentText("The Credentials are okay");
-                    successAlert.setContentText("Book ID: " + findBook.getBookId() + "\n"
-                            + "Book Name: " + findBook.getBookName() + "\n"
+                    successAlert.setContentText("Book Name: " + findBook.getBookName() + "\n"
                             + "Book Genere: " + findBook.getGenere() + "\n"
                             + "Book Quantity: " + findBook.getQuantity() + "\n"
                             + "Book Price: " + findBook.getPrice() + "\n"

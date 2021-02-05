@@ -2,6 +2,7 @@ package BookView;
 
 import BookView.AllBookView;
 import BookView.BookFindingView;
+import CartelView.CartelRegistrationView;
 import LibraryManagementFunctionFactory.BookFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -78,12 +79,19 @@ public class BuyBookView {
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("Book Found");
                     successAlert.setContentText("The Credentials are okay");
+                    Integer newQuantity = findBook.getQuantity()-1;
+                    findBook.setQuantity(newQuantity);
+//                    bookFactory.editBook(findBook);
+                    stage.setScene(new CartelRegistrationView(findBook).execute(stage));
                     if (findBook.getQuantity() <= 5) {
-                        successAlert.setContentText("Time To Buy New Books ! " + "\n" + "Quantity Left Is Limited: " + findBook.getQuantity() + "\n" + "Price To Pay: "
-                                + findBook.getPrice());
+                        successAlert.setContentText("Book Is Found..." + "\n"
+                                + "Time To Buy New Books ! " + "\n"
+                                + "Quantity Left Is Limited: " + findBook.getQuantity() + "\n"
+                                + "You Paid: " + findBook.getPrice() + "-ALL");
                     } else {
-                        successAlert.setContentText("Book Is Registered..." + "\n" + "Quantity Left: " + findBook.getQuantity() + "\n" + "Price To Pay: "
-                                + findBook.getPrice());
+                        successAlert.setContentText("Book Is Found..." + "\n"
+                                + "Quantity Left: " + findBook.getQuantity() + "\n"
+                                + "You Paid: " + findBook.getPrice() + "-ALL");
                     }
                     successAlert.showAndWait();
                     successAlert.close();

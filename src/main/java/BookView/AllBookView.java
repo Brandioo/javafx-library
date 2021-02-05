@@ -63,7 +63,7 @@ public class AllBookView {
                 String newBookName=(String) t.getNewValue();
 
                 currentBook.setBookName(newBookName);
-                bookFactory.editBook(currentBook, pos);
+                bookFactory.editBook(currentBook);
             }
 
         });
@@ -84,7 +84,7 @@ public class AllBookView {
                 String newGenereBook=(String) t.getNewValue();
 
                 currentGenereBook.setGenere(newGenereBook);
-                bookFactory.editBook(currentGenereBook, pos);
+                bookFactory.editBook(currentGenereBook);
             }
 
         });
@@ -123,7 +123,7 @@ public class AllBookView {
                 String newIsbn =(String) t.getNewValue();
 
                 currentISBN.setIsbn(newIsbn);
-                bookFactory.editBook(currentISBN, pos);
+                bookFactory.editBook(currentISBN);
             }
 
         });
@@ -161,7 +161,7 @@ public class AllBookView {
                 String newDescription=(String) t.getNewValue();
                 System.out.println("Description");
                 currentBook.setDescription(newDescription);
-                bookFactory.editBook(currentBook, pos);
+                bookFactory.editBook(currentBook);
             }
 
         });
@@ -181,7 +181,7 @@ public class AllBookView {
                 Integer newQuantity=(Integer) t.getNewValue();
 
                 currentBook.setQuantity(newQuantity);
-                bookFactory.editBook(currentBook, pos);
+                bookFactory.editBook(currentBook);
             }
 
         });
@@ -201,7 +201,7 @@ public class AllBookView {
                 Integer newPrice=(Integer) t.getNewValue();
 
                 currentBook.setPrice(newPrice);
-                bookFactory.editBook(currentBook, pos);
+                bookFactory.editBook(currentBook);
             }
 
         });

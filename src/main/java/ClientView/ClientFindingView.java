@@ -1,5 +1,6 @@
 package ClientView;
 
+import CartelView.CartelRegistrationView;
 import LibraryManagementFunctionFactory.ClientFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import views.HomeView;
 public class ClientFindingView {
     private Employee currentUser;
     private Client currentClient;
+    private Book currentBook;
     public ClientFindingView(Employee currentUser) {
         this.currentUser = currentUser;
     }
@@ -77,11 +79,12 @@ public class ClientFindingView {
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("Client Found");
                     successAlert.setContentText("The Credentials are okay");
-                    successAlert.setContentText("Client First Name: " + findClient.getFirstName() + "\n"
-                            + "Client Last Name: " + findClient.getLastName() + "\n"
-                            + "Client Email: " + findClient.getEmail() + "\n"
-                            + "Client Phone Number: " + findClient.getPhoneNumber() + "\n"
-                            + "Client Address: " + findClient.getAddress());
+                    successAlert.setContentText("ID: " + findClient.getClientId() + "\n"
+                            +"First Name: " + findClient.getFirstName() + "\n"
+                            + "Last Name: " + findClient.getLastName() + "\n"
+                            + "Email: " + findClient.getEmail() + "\n"
+                            + "Phone Number: " + findClient.getPhoneNumber() + "\n"
+                            + "Address: " + findClient.getAddress());
                     successAlert.showAndWait();
                     successAlert.close();
                 }
@@ -93,7 +96,7 @@ public class ClientFindingView {
         BorderPane mainPane = new BorderPane();
         MenuBar menuBar = new MenuBar();
 
-        Label backLabel=new Label("Back");
+        Label backLabel=new Label("Home View");
         backLabel.setStyle("-fx-font-weight: bold;");
         Menu back=new Menu("", backLabel);
         backLabel.setOnMouseClicked(e->{
@@ -102,6 +105,17 @@ public class ClientFindingView {
         });
 
         menuBar.getMenus().add(back);
+        mainPane.setTop(menuBar);
+
+        Label cartelRegistrationView=new Label("Cartel Registration View");
+//        cartelRegistrationView.setStyle("-fx-font-weight: bold;");
+        Menu cartelRegistration=new Menu("", cartelRegistrationView);
+        cartelRegistrationView.setOnMouseClicked(e->{
+            CartelRegistrationView cartelRegistrationView1= new CartelRegistrationView(currentBook);
+            stage.setScene(cartelRegistrationView1.execute(stage));
+        });
+
+        menuBar.getMenus().add(cartelRegistration);
         mainPane.setTop(menuBar);
 
         root1.setStyle("-fx-background-image: url('img_3.png')");

@@ -1,5 +1,6 @@
 package EmployeesView;
 
+import CartelView.CartelRegistrationView;
 import LibraryManagementFunctionFactory.EmployeeFactory;
 import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
@@ -19,11 +20,15 @@ import views.HomeView;
 
 public class FindEmployeeView {
     private Employee currentUser;
+    private Book currentBook;
+
     public FindEmployeeView(Employee currentUser) {
         this.currentUser = currentUser;
     }
+
     public FindEmployeeView() {
     }
+
     public Scene execute(Stage stage) {
 
         GridPane root1 = new GridPane();
@@ -45,7 +50,7 @@ public class FindEmployeeView {
         findEmployeeButton.setStyle("-fx-font-weight: bold;");
         findEmployeeButton.setId("findEmployeeButton-button");
         findEmployeeButton.setStyle("-fx-background-color:#ea0909;");
-        HBox h=new HBox();
+        HBox h = new HBox();
         h.getChildren().add(findEmployeeButton);
         root1.add(findEmployeeButton, 2, 5);
 
@@ -60,7 +65,7 @@ public class FindEmployeeView {
                 EmployeeFactory employeeFactory = new EmployeeFactory();
                 Employee findEmployee = employeeFactory.findEmployeeByName(employeeName);
 
-                if (findEmployee==null) {
+                if (findEmployee == null) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setHeaderText("There was an error");
                     errorAlert.setContentText("Employee not available");
@@ -69,7 +74,11 @@ public class FindEmployeeView {
                     Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     successAlert.setHeaderText("Employee Found");
                     successAlert.setContentText("The Credentials are okay");
-                    successAlert.setContentText(findEmployee.toString());
+                    successAlert.setContentText("ID: " + findEmployee.getEmployeesId() + "\n"
+                            + "Name: " + findEmployee.getFirstName() + "\n"
+                            + "Last Name: " + findEmployee.getLastName() + "\n"
+                            + "Role: " + findEmployee.getRole() + "\n"
+                            + "User: " + findEmployee.getUser() + "\n");
                     successAlert.showAndWait();
                     successAlert.close();
                 }
@@ -81,15 +90,26 @@ public class FindEmployeeView {
         BorderPane mainPane = new BorderPane();
         MenuBar menuBar = new MenuBar();
 
-        Label backLabel=new Label("Back");
+        Label backLabel = new Label("Home View");
         backLabel.setStyle("-fx-font-weight: bold;");
-        Menu back=new Menu("", backLabel);
-        backLabel.setOnMouseClicked(e->{
-            HomeView homeView= new HomeView(currentUser);
+        Menu back = new Menu("", backLabel);
+        backLabel.setOnMouseClicked(e -> {
+            HomeView homeView = new HomeView(currentUser);
             stage.setScene(homeView.execute(stage));
         });
 
         menuBar.getMenus().add(back);
+        mainPane.setTop(menuBar);
+
+        Label cartelRegistrationView = new Label("Cartel Registration View");
+//        cartelRegistrationView.setStyle("-fx-font-weight: bold;");
+        Menu cartelRegistration = new Menu("", cartelRegistrationView);
+        cartelRegistrationView.setOnMouseClicked(e -> {
+            CartelRegistrationView cartelRegistrationView1 = new CartelRegistrationView(currentBook);
+            stage.setScene(cartelRegistrationView1.execute(stage));
+        });
+
+        menuBar.getMenus().add(cartelRegistration);
         mainPane.setTop(menuBar);
 
 

@@ -189,11 +189,10 @@ public class HomeView {
             public void handle(ActionEvent arg0) {
 //                VendingMachine vendingMachine=new VendingMachine();
 //                vendingMachine.start();
-                BuyBookView buyBookView=new BuyBookView();
-                buyBookView.execute(stage);
                 Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setHeaderText("Buying Book");
                 successAlert.showAndWait();
+                    stage.setScene(new PaymentTypeView().showView(stage));
                 System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
             }
 

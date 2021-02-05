@@ -25,16 +25,6 @@ public class BookFactory {
         this.session = session;
     }
 
-    public void createBook(final Book book) {
-
-        Transaction transaction = session.beginTransaction();
-
-        session.save(book);
-
-        transaction.commit();
-
-    }
-
     public String findAllBook() {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From Book: ");
@@ -83,8 +73,18 @@ public class BookFactory {
         return book;
     }
 
-    public boolean createBookButton(String bookName, String genere, String isbn,
-                                    String description, Integer quantity, Integer price, LocalDateTime createdOn) {
+    public void createBook(final Book book) {
+
+        Transaction transaction = session.beginTransaction();
+
+        session.save(book);
+
+        transaction.commit();
+
+    }
+
+    public boolean createBookSection(String bookName, String genere, String isbn,
+                                     String description, Integer quantity, Integer price, LocalDateTime createdOn) {
 
         // the data are okay
         // create the user
@@ -95,28 +95,48 @@ public class BookFactory {
 
     }
 
+
+    public void editBook(Book updatedBook) {
+
+        session = HibernateUtils.getSessionFactory().openSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        session.update(updatedBook);
+
+        transaction.commit();
+
+    }
+
+
+//    public boolean updateBookSection(Book book, int position) {
+//
+//        // the data are okay
+//        // create the user
+//        //this.book.add(book);
+//        editBook(book);
+//        this.books.set(position,book);
+//        return true;
+//
+//    }
+
+
+
     public Book findBookByID(int Id) {
         System.out.println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_--_-_-_-_-");
         System.out.println("Print All From Book by id: ");
         return session.find(Book.class, Id);
     }
 
-    public void editBook(Book updatedBook, int position) {
-//        this.books.set(position, updatedBook);
-//        createBook(updatedBook);
-//        Session session = sessionFactory.openSession();
-//        Transaction tx = session.beginTransaction();
+//    public void editBook(final Book updatedBook, int postion) {
+//        Transaction transaction = session.beginTransaction();
 //
-//        String hqlUpdate = "update Customer c set c.name = :newName where c.name = :oldName";
-//// or String hqlUpdate = "update Customer set name = :newName where name = :oldName";
-//        int updatedEntities = s.createQuery( hqlUpdate )
-//                .setString( "newName",   )
-//                .setString( "oldName", oldName )
-//                .executeUpdate();
-//        tx.commit();
-//        session.close();
-        this.books.set(position, updatedBook);
-        createBook(updatedBook);
+//        session.update(String.valueOf(postion), updatedBook);
+//
+//        transaction.commit();
 //    }
-    }
+
+
+
+
 }

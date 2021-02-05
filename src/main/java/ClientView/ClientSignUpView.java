@@ -61,7 +61,7 @@ public class ClientSignUpView {
         root1.add(addressLabel, 1, 6);
         root1.add(addressField, 2, 6);
 
-        Label createdOnLabel = new Label("Created On: ");
+        Label createdOnLabel = new Label("Created On (Auto Calc. Now): ");
         createdOnLabel.setTextFill(Color.web("black"));
         createdOnLabel.setStyle("-fx-font-weight: bold;");
         TextField createdOnField = new TextField();

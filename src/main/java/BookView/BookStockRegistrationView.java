@@ -1,11 +1,9 @@
 package BookView;
 
 import LibraryManagementFunctionFactory.BookFactory;
-import LibraryManagementFunctionFactory.LibraryManagementOptionsFactory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -106,7 +104,7 @@ public class BookStockRegistrationView {
 //        root1.add(priceField, 2, 8);
 
 
-        Label createdOnLabel = new Label("Creation:    ");
+        Label createdOnLabel = new Label("Creation (Auto Calc. Now): ");
         createdOnLabel.setTextFill(Color.WHITE);
         createdOnLabel.setStyle("-fx-font-weight: bold;");
         TextField createdOnField = new TextField();
@@ -137,7 +135,7 @@ public class BookStockRegistrationView {
                 // boolean isRememberMe = remember.isSelected();
 
                 BookFactory bookFactory = new BookFactory();
-                boolean isRegistered = bookFactory.createBookButton(bookName, genere, isbn, description, quantity, price, createdOn);
+                boolean isRegistered = bookFactory.createBookSection(bookName, genere, isbn, description, quantity, price, createdOn);
 
                 if (!isRegistered) {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
